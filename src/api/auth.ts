@@ -1,5 +1,5 @@
 import client from './client'
-import type { AuthResponse, LoginPayload, RegisterPayload, User } from '@/types/auth'
+import type { AuthResponse, LoginPayload, RegisterPayload, User } from '@/models/auth'
 
 export const login = (payload: LoginPayload) =>
   client.post<AuthResponse>('/auth/login', payload).then((res) => res.data)

@@ -1,58 +1,83 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
+import { Package, LayoutGrid, ClipboardList, LogOut } from 'lucide-vue-next'
+import { useAuth } from '@/composables/useAuth'
 import { useAuthStore } from '@/stores/auth'
 
+const { logout } = useAuth()
 const auth = useAuthStore()
 </script>
 
 <template>
-  <div class="flex min-h-screen bg-gray-50">
+  <div class="flex min-h-screen bg-[#f8f9fa]">
     <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-gray-200 p-4">
-      <h1 class="text-xl font-bold text-gray-800 mb-8">Inventory</h1>
+    <aside class="flex w-64 flex-col bg-white border-r border-gray-200">
+      <!-- Brand -->
+      <div class="flex items-center gap-3 px-6 py-6">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800">
+          <Package class="h-5 w-5 text-white" />
+        </div>
+        <span class="text-lg font-bold text-slate-800">Inventory</span>
+      </div>
 
-      <nav class="flex flex-col gap-1">
+      <!-- Nav -->
+      <nav class="mt-2 flex flex-1 flex-col gap-1 px-3">
         <RouterLink
           to="/dashboard"
-          class="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-          active-class="bg-gray-100 text-gray-900"
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          active-class="bg-slate-800 !text-white hover:!bg-slate-700"
         >
+          <LayoutGrid class="h-5 w-5" />
           Dashboard
         </RouterLink>
         <RouterLink
           to="/products"
-          class="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-          active-class="bg-gray-100 text-gray-900"
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          active-class="bg-slate-800 !text-white hover:!bg-slate-700"
         >
+          <Package class="h-5 w-5" />
           Products
         </RouterLink>
         <RouterLink
           to="/orders"
-          class="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-          active-class="bg-gray-100 text-gray-900"
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          active-class="bg-slate-800 !text-white hover:!bg-slate-700"
         >
+          <ClipboardList class="h-5 w-5" />
           Orders
         </RouterLink>
       </nav>
+
+      <!-- User section -->
+      <div class="border-t border-gray-200 p-4">
+        <div class="flex items-center gap-3">
+          <div class="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">
+            {{ auth.user?.name?.charAt(0)?.toUpperCase() || 'U' }}
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="truncate text-sm font-medium text-gray-900">{{ auth.user?.name || 'User' }}</p>
+            <p class="truncate text-xs text-gray-400">{{ auth.user?.email || '' }}</p>
+          </div>
+          <button
+            class="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            title="Logout"
+            @click="logout()"
+          >
+            <LogOut class="h-5 w-5" />
+          </button>
+        </div>
+      </div>
     </aside>
 
     <!-- Main content -->
-    <div class="flex-1 flex flex-col">
+    <div class="flex flex-1 flex-col">
       <!-- Top bar -->
-      <header class="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-3">
-        <span class="text-sm text-gray-500">
-          {{ auth.user?.name || 'User' }}
-        </span>
-        <button
-          class="text-sm text-gray-500 hover:text-gray-700"
-          @click="auth.logout()"
-        >
-          Logout
-        </button>
+      <header class="border-b border-gray-200 bg-white px-8 py-5">
+        <p class="text-sm text-gray-500">Welcome back, <span class="font-medium text-gray-800">{{ auth.user?.name || 'User' }}</span></p>
       </header>
 
       <!-- Page content -->
-      <main class="flex-1 p-6">
+      <main class="flex-1 p-8">
         <RouterView />
       </main>
     </div>

@@ -19,9 +19,11 @@
   "dependencies": {
     "@tanstack/vue-query": "^5.100.6",
     "axios": "^1.15.2",
+    "lucide-vue-next": "^1.0.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
+    "vue-router": "^5.0.4",
+    "zod": "^4.4.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",

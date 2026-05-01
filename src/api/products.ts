@@ -1,5 +1,5 @@
 import client from './client'
-import type { Product } from '@/types/product'
+import type { Product } from '@/models/product'
 
 export const getProducts = (params?: { search?: string; category?: string }) =>
   client.get<Product[]>('/products', { params }).then((res) => res.data)

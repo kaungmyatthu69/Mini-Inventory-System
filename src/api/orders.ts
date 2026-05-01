@@ -1,5 +1,5 @@
 import client from './client'
-import type { Order, CreateOrderPayload } from '@/types/order'
+import type { Order, CreateOrderPayload } from '@/models/order'
 
 export const getOrders = (params?: { status?: string }) =>
   client.get<Order[]>('/orders', { params }).then((res) => res.data)
