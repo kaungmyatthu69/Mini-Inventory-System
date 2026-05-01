@@ -10,13 +10,13 @@ export function useAuth() {
 
   async function login(payload: LoginPayload) {
     const response = await loginApi(payload)
-    auth.setAuth(response)
+    auth.setAuth(response.data)
     router.push({ name: 'dashboard' })
   }
 
   async function register(payload: RegisterPayload) {
     const response = await registerApi(payload)
-    auth.setAuth(response)
+    auth.setAuth(response.data)
     router.push({ name: 'dashboard' })
   }
 

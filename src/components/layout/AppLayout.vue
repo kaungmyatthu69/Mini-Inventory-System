@@ -24,24 +24,21 @@ const auth = useAuthStore()
       <nav class="mt-2 flex flex-1 flex-col gap-1 px-3">
         <RouterLink
           to="/dashboard"
-          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
-          active-class="bg-slate-800 !text-white hover:!bg-slate-700"
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-slate-700 hover:text-white [&.router-link-active]:bg-slate-800 [&.router-link-active]:text-white [&.router-link-active]:hover:bg-slate-700"
         >
           <LayoutGrid class="h-5 w-5" />
           Dashboard
         </RouterLink>
         <RouterLink
           to="/products"
-          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
-          active-class="bg-slate-800 !text-white hover:!bg-slate-700"
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-slate-700 hover:text-white [&.router-link-active]:bg-slate-800 [&.router-link-active]:text-white [&.router-link-active]:hover:bg-slate-700"
         >
           <Package class="h-5 w-5" />
           Products
         </RouterLink>
         <RouterLink
           to="/orders"
-          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
-          active-class="bg-slate-800 !text-white hover:!bg-slate-700"
+          class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-slate-700 hover:text-white [&.router-link-active]:bg-slate-800 [&.router-link-active]:text-white [&.router-link-active]:hover:bg-slate-700"
         >
           <ClipboardList class="h-5 w-5" />
           Orders

@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/components/layout/AppLayout.vue'),
-      meta: { requiresAuth: false },
+      meta: { requiresAuth: true },
       children: [
         {
           path: '',
@@ -44,6 +44,11 @@ const router = createRouter({
           path: 'orders/create',
           name: 'create-order',
           component: () => import('@/views/orders/CreateOrderView.vue'),
+        },
+        {
+          path: '/:pathMatch(.*)*',
+          name: 'not-found',
+          redirect: '/dashboard',
         },
       ],
     },

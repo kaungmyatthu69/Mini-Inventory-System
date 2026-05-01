@@ -5,6 +5,7 @@ import { Smartphone, Type } from 'lucide-vue-next'
 import { useAuth } from '@/composables/useAuth'
 import { useZodForm } from '@/composables/useZodForm'
 import { registerSchema } from '@/models/auth'
+import { getErrorMessage } from '@/utils/format'
 
 const { register } = useAuth()
 
@@ -25,12 +26,7 @@ async function handleSubmit() {
   try {
     await register({ name: name.value, email: email.value, password: password.value })
   } catch (err: unknown) {
-    if (err && typeof err === 'object' && 'response' in err) {
-      const axiosErr = err as { response?: { data?: { message?: string } } }
-      errorMsg.value = axiosErr.response?.data?.message || 'Registration failed. Please try again.'
-    } else {
-      errorMsg.value = 'Something went wrong. Please try again.'
-    }
+    errorMsg.value = getErrorMessage(err, 'Registration failed. Please try again.')
   } finally {
     loading.value = false
   }

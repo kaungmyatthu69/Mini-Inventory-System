@@ -3,7 +3,7 @@ import { useAuthStore } from '@/stores/auth'
 import router from '@/router'
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -21,9 +21,12 @@ client.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      const auth = useAuthStore()
-      auth.logout()
-      router.push({ name: 'login' })
+      const url = error.config?.url ?? ''
+      if (!url.includes('/login') && !url.includes('/register')) {
+        const auth = useAuthStore()
+        auth.logout()
+        router.push({ name: 'login' })
+      }
     }
     return Promise.reject(error)
   },

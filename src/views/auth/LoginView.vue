@@ -5,6 +5,7 @@ import { BarChart3, ClipboardList, Eye } from 'lucide-vue-next'
 import { useAuth } from '@/composables/useAuth'
 import { useZodForm } from '@/composables/useZodForm'
 import { loginSchema } from '@/models/auth'
+import { getErrorMessage } from '@/utils/format'
 
 const { login } = useAuth()
 
@@ -23,12 +24,7 @@ async function handleSubmit() {
   try {
     await login({ email: email.value, password: password.value })
   } catch (err: unknown) {
-    if (err && typeof err === 'object' && 'response' in err) {
-      const axiosErr = err as { response?: { data?: { message?: string } } }
-      errorMsg.value = axiosErr.response?.data?.message || 'Invalid email or password'
-    } else {
-      errorMsg.value = 'Something went wrong. Please try again.'
-    }
+    errorMsg.value = getErrorMessage(err, 'Invalid email or password')
   } finally {
     loading.value = false
   }

@@ -26,11 +26,10 @@ export interface User {
   id: string
   name: string
   email: string
-  role: 'admin' | 'staff'
-  createdAt: string
 }
 
 export interface AuthResponse {
+  token_type: string
   token: string
   user: User
 }
