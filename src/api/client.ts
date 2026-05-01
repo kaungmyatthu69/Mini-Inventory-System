@@ -2,8 +2,11 @@ import axios from 'axios'
 import { useAuthStore } from '@/stores/auth'
 import router from '@/router'
 
+const base = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+const version = import.meta.env.VITE_API_VERSION
+
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
+  baseURL: version ? `${base}/${version}` : base,
   headers: {
     'Content-Type': 'application/json',
   },

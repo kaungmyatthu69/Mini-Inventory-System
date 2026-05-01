@@ -63,12 +63,13 @@ cp .env.example .env
 
 ```env
 VITE_API_URL=http://localhost:8000/api
+VITE_API_VERSION=v1
 ```
 
-### Development
-import { z } from 'zod'
+`VITE_API_URL` is the base URL of the backend API. `VITE_API_VERSION` is optional — when set, it gets appended to the base URL (e.g., `http://localhost:8000/api/v1`).
 
-// Schemas
+### Development
+
 ```sh
 pnpm dev
 ```
