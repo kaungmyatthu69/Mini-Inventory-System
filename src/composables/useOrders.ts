@@ -3,7 +3,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
 import { getOrders, createOrder } from '@/api/orders'
 import type { CreateOrderPayload } from '@/models/order'
 
-export type { CreateOrderPayload }
 
 export function useOrders(status: Ref<string>, page: Ref<number>) {
   const query = useQuery({
