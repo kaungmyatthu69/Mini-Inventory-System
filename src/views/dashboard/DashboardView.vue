@@ -66,7 +66,12 @@ const statCards = computed(() => [
       <!-- Panels -->
       <div class="mt-6 grid gap-6 lg:grid-cols-2">
         <!-- Recent Orders -->
-        <DashboardPanel title="Recent Orders" empty-text="No orders yet." :items="recentOrders">
+        <DashboardPanel
+          title="Recent Orders"
+          empty-text="No orders yet."
+          :items="recentOrders"
+          v-if="recentOrders.length > 0"
+        >
           <div
             v-for="order in recentOrders"
             :key="order.id"
@@ -77,14 +82,21 @@ const statCards = computed(() => [
               <p class="text-xs text-gray-400">{{ formatShortDate(order.created_at) }}</p>
             </div>
             <div class="flex items-center gap-3">
-              <span class="text-sm font-medium text-gray-700">{{ formatCurrency(order.total_price) }}</span>
+              <span class="text-sm font-medium text-gray-700">{{
+                formatCurrency(order.total_price)
+              }}</span>
               <StatusBadge :status="order.order_status" />
             </div>
           </div>
         </DashboardPanel>
 
         <!-- Low Stock -->
-        <DashboardPanel title="Low Stock Alerts" empty-text="All products are well-stocked." :items="lowStockAlerts">
+        <DashboardPanel
+          title="Low Stock Alerts"
+          empty-text="All products are well-stocked."
+          :items="lowStockAlerts"
+          v-if="lowStockAlerts.length > 0"
+        >
           <div
             v-for="product in lowStockAlerts"
             :key="product.id"

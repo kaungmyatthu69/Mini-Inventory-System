@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown, Package } from 'lucide-vue-next'
+import { ChevronDown, Package, User } from 'lucide-vue-next'
 import { formatFullDate, formatCurrency } from '@/utils/format'
 import type { Order } from '@/models/order'
 import StatusBadge from '@/components/StatusBadge.vue'
@@ -29,6 +29,10 @@ const emit = defineEmits<{
         :class="{ 'rotate-180': expanded }"
       />
       <span class="font-mono text-xs text-gray-400">#{{ order.id.slice(0, 8) }}</span>
+      <span v-if="order.user_name" class="inline-flex items-center gap-1 text-sm text-gray-600">
+        <User class="h-3.5 w-3.5" />
+        {{ order.user_name }}
+      </span>
       <span class="text-sm text-gray-600">{{ formatFullDate(order.created_at) }}</span>
       <span class="text-sm text-gray-500">{{ order.products.length }} item{{ order.products.length !== 1 ? 's' : '' }}</span>
       <span class="ml-auto text-sm font-semibold text-gray-800">{{ formatCurrency(order.total_price) }}</span>

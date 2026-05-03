@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
+import { ArrowLeft } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 import { useCreateOrder } from '@/composables/useOrders'
 import { useProducts } from '@/composables/useProducts'
@@ -47,6 +48,13 @@ async function handleSubmit() {
 
 <template>
   <div>
+    <button
+      class="mb-4 inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-slate-800"
+      @click="router.push({ name: 'orders' })"
+    >
+      <ArrowLeft class="h-4 w-4" />
+      Back to Orders
+    </button>
     <h1 class="text-2xl font-bold text-slate-800">Create Order</h1>
     <p class="mt-1 text-sm text-gray-500">Select products and quantities to create a new order.</p>
 

@@ -29,6 +29,7 @@ export interface OrderProduct {
 export interface Order {
   id: string
   user_id: string
+  user_name?: string
   total_price: number
   order_status: 'pending' | 'completed' | 'cancelled' | 'refunded'
   created_at: string

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { Smartphone, Type } from 'lucide-vue-next'
+import { Smartphone, Type, Loader2 } from 'lucide-vue-next'
 import { useAuth } from '@/composables/useAuth'
 import { useZodForm } from '@/composables/useZodForm'
 import { registerSchema } from '@/models/auth'
@@ -107,7 +107,10 @@ async function handleSubmit() {
             :disabled="loading"
             class="h-11 w-full rounded-xl bg-slate-800 text-sm font-semibold text-white transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {{ loading ? 'Creating account...' : 'Create Account' }}
+            <span class="flex items-center justify-center gap-2">
+              <Loader2 v-if="loading" class="h-4 w-4 animate-spin" />
+              {{ loading ? 'Creating account...' : 'Create Account' }}
+            </span>
           </button>
         </form>
 
